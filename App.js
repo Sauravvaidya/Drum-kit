@@ -1,13 +1,31 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button, Alert } from 'react-native';
+
+const soundObject = new Expo.Audio.Sound();
+
+const playHiHat = async () => { 
+  try {
+      await soundObject.playAsync();
+      await soundObject.setPositionAsync(0);
+  } catch (error) {
+    Alert.alert(error);
+    // An error occurred!
+  }
+}
 
 export default class App extends React.Component {
+
+  async componentWillMount() {
+    await soundObject.loadAsync(require('./sounds/hihat.wav'));
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Text>Brian. Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
+        <Button
+          onPress={playHiHat}
+          title="Hi hat"
+        />
       </View>
     );
   }
