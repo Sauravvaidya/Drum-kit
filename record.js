@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, Alert, Image, ImageBackground, TouchableOpacity } from 'react-native';
 
-let recording = new Expo.Audio.Recording();
+let recording;
 export default class Record extends React.Component {
 
   constructor(props) {
@@ -24,7 +24,7 @@ export default class Record extends React.Component {
     this.setState({ isRecording });
     if(isRecording) {    
       try {
-        // Alert.alert('Recording....');
+        recording = new Expo.Audio.Recording();
         await recording.prepareToRecordAsync(Expo.Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY);
         await recording.startAsync();
         // You are now recording!
@@ -34,7 +34,6 @@ export default class Record extends React.Component {
     } 
     else {    
       try {
-        // Alert.alert('Recording stopped....');
         await recording.stopAndUnloadAsync();
       } catch (error) {
         //something
