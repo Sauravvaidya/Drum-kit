@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, Alert, Image, ImageBackground, TouchableOpacity } from 'react-native';
 import { Svg } from 'expo';
+import Record from './record';
 
 export default class App extends React.Component {
 
@@ -76,6 +77,7 @@ export default class App extends React.Component {
             />
           </Svg>
         </ImageBackground>
+        <Record/>
       </View>
     );
   }
